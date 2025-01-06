@@ -10,25 +10,22 @@ import java.util.List;
 @Service
 public class ProductService implements IProductService{
 
-    //    @Autowired
-//    private ProductRepository productRepository;
-
+    @Autowired
+    private ProductRepository productRepository;
     // Inyección de dependencias a través del constructor
-    private final ProductRepository productRepository;
-
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+//    private final ProductRepository productRepository;
+//    public ProductService(ProductRepository productRepository) {
+//        this.productRepository = productRepository;
+//    }
     @Override
-    public List<Product> ListProducts() {
+    public List<Product> listProducts() {
         return this.productRepository.findAll();
 
     }
 
     @Override
     public Product findProductById(Integer idProduct) {
-        Product product = this.productRepository.findById(idProduct).orElse(null);
-        return product;
+        return this.productRepository.findById(idProduct).orElse(null);
     }
 
     @Override

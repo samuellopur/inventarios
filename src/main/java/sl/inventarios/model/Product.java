@@ -7,19 +7,28 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer idProduct;
-    String description;
-    Double price;
-    Integer existence;
+    private Integer idProduct;
+    private String description;
+    private Double price;
+    private Integer existence;
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "idProduct=" + idProduct +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", existence=" + existence +
+                '}';
+    }
 }

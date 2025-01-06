@@ -4,7 +4,7 @@ import sl.inventarios.model.Product;
 import java.util.List;
 
 public interface IProductService {
-    public List<Product> ListProducts();
+    public List<Product> listProducts();
 
     public Product findProductById(Integer idProduct);
 
