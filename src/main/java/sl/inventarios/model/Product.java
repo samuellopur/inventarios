@@ -17,10 +17,10 @@ import lombok.NoArgsConstructor;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProduct;
-    private String description;
-    private Double price;
-    private Integer existence;
+    Integer idProduct;
+    String description;
+    Double price;
+    Integer existence;
 
     @Override
     public String toString() {
