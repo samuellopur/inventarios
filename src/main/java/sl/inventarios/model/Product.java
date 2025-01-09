@@ -8,6 +8,8 @@ import lombok.*;
 
 
 @Entity
+@Getter
+@Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,36 +21,5 @@ public class Product {
     private String description;
     private Double price;
     private Integer existence;
-
-    public Integer getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(Integer idProduct) {
-        this.idProduct = idProduct;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getExistence() {
-        return existence;
-    }
-
-    public void setExistence(Integer existence) {
-        this.existence = existence;
-    }
+    
 }
