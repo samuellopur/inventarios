@@ -3,10 +3,7 @@ package sl.inventarios.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sl.inventarios.model.Product;
 import sl.inventarios.service.ProductService;
 
@@ -31,5 +28,12 @@ public class ProductController {
         logger.info("Productos obtenidos:");
         products.forEach(product -> logger.info(product.toString()));
         return products;
+    }
+
+    @PostMapping("/productos")
+    public Product addProduct(@RequestBody Product product){
+        logger.info("Producto a agregar: " + product);
+        return this.productService.saveProduct(product);
+
     }
 }
