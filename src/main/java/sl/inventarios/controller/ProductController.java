@@ -2,8 +2,10 @@ package sl.inventarios.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sl.inventarios.exception.ResourceNotFoundException;
 import sl.inventarios.model.Product;
 import sl.inventarios.service.ProductService;
 
@@ -34,6 +36,15 @@ public class ProductController {
     public Product addProduct(@RequestBody Product product){
         logger.info("Producto a agregar: " + product);
         return this.productService.saveProduct(product);
-
     }
+
+    @GetMapping("/productos/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable int id){
+        Product product = this.productService.findProductById(id);
+        if (product != null)
+            return ResponseEntity.ok(product);
+        else
+            throw  new ResourceNotFoundException("Id no encontrado" + id);
+    }
+
 }
