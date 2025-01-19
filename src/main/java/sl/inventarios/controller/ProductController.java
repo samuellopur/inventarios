@@ -3,13 +3,14 @@ package sl.inventarios.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sl.inventarios.exception.ResourceNotFoundException;
 import sl.inventarios.model.Product;
 import sl.inventarios.service.ProductService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("inventario-app")
@@ -55,6 +56,16 @@ public class ProductController {
         product.setExistence(productReceived.getExistence());
         this.productService.saveProduct(product);
         return ResponseEntity.ok(product);
+    }
+
+    @DeleteMapping("/productos/{id}")
+    public ResponseEntity<Map<String, Boolean>>
+    deleteProduct(@PathVariable int id){
+        Product product = productService.findProductById(id);
+        this.productService.deleteProductById(product.getIdProduct());
+        Map<String, Boolean> answer = new HashMap<>();
+        answer.put("eliminado", Boolean.TRUE);
+        return ResponseEntity.ok(answer);
     }
 
 }
