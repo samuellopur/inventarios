@@ -51,6 +51,8 @@ public class ProductController {
     @PutMapping("/productos/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody Product productReceived){
         Product product = this.productService.findProductById(id);
+        if (product == null)
+            throw new ResourceNotFoundException("Id no encontrado: " + id);
         product.setDescription(productReceived.getDescription());
         product.setPrice(productReceived.getPrice());
         product.setExistence(productReceived.getExistence());
@@ -62,6 +64,8 @@ public class ProductController {
     public ResponseEntity<Map<String, Boolean>>
     deleteProduct(@PathVariable int id){
         Product product = productService.findProductById(id);
+        if (product == null)
+            throw new ResourceNotFoundException("Id no encontrado: " + id);
         this.productService.deleteProductById(product.getIdProduct());
         Map<String, Boolean> answer = new HashMap<>();
         answer.put("eliminado", Boolean.TRUE);
